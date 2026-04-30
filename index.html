@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chart.js Tutorial</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .chart-container {
+            width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <div class="chart-container">
+        <h2>Line Chart</h2>
+        <canvas id="myChart1"></canvas>
+
+        <h2>Bar Chart</h2>
+        <canvas id="myChart2"></canvas>
+
+        <h2>Pie Chart</h2>
+        <canvas id="myChart3"></canvas>
+    </div>
+ 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx1 = document.getElementById('myChart1')
+        const ctx2 = document.getElementById('myChart2');
+        const ctx3 = document.getElementById('myChart3');
+
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+        const revenue = [50000, 60000, 55000, 70000, 75000, 80000];
+        const expenses = [30000, 35000, 32000, 40000, 42000, 45000];
+        const profit = [20000, 25000, 23000, 30000, 33000, 35000];
+
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Revenue',
+                    data: revenue,
+                    borderColor: 'blue',
+                    fill: false
+                }, 
+                {
+                    label: 'Expenses',
+                    data: expenses,
+                    borderColor: 'red',
+                    fill: false
+                }, 
+                {
+                    label: 'Profit',
+                    data: profit,
+                    borderColor: 'green',
+                    fill: false
+                }]
+            }
+        });
+
+        // ctx2 is going to be a bar chart showing revenue only
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Revenue',
+                    data: revenue,
+                    backgroundColor: 'blue'
+                }]
+            }
+        });
+
+        // ctx3 is going to be a pie chart showing the distribution of revenue in June 
+      
+            new Chart(ctx3, {
+                type: 'pie',
+                data: {
+                    labels: ['Reinvestment 40%', 'Salary 35%', 'Miscelleneous 25%'],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: ['blue', 'red', 'green']
+                    }]
+                }
+            });
+
+
+    </script>
+
+</body>
+
+</html>
